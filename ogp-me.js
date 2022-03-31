@@ -17,7 +17,14 @@
       connectedCallback() {
         this._render();
       }
-      _render() {
+      async _render() {
+        const proxy = this.getAttribute("proxy");
+        const src = this.getAttribute("src");
+        const res = await (await fetch(`${proxy}/${src}`)).text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(res, "text/html");
+        console.log(doc.querySelector("title").innerText);
+
         this.shadowRoot
           .querySelector("#container")
           .appendChild(loadingTemplate.content.cloneNode(true));
