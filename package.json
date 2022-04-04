@@ -1,0 +1,26 @@
+{
+  "name": "ogp-me",
+  "version": "0.0.1",
+  "description": "<ogp-me> is Web Components for rendering the OGP",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./ogp-me.js": "./src/ogp-me.js"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Silver-birder/ogp-me.git"
+  },
+  "keywords": [
+    "Web Components",
+    "OGP"
+  ],
+  "author": "silverbirder <silverbirder@gmail.com> (https://silver-birder.github.io/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Silver-birder/ogp-me/issues"
+  },
+  "homepage": "https://github.com/Silver-birder/ogp-me#readme"
+}
