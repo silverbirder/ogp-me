@@ -15,6 +15,7 @@ template.innerHTML = `
       }
       .container .img {
         width: 100%;
+        height: auto;
       }
       .container .site {
         color: #606770;
@@ -27,6 +28,7 @@ template.innerHTML = `
       .container .description {
         color: #606770;
         font-size: 14px;
+        line-height: 28px;
       }
   </style>
   <div class="card">
