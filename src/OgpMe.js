@@ -23,6 +23,7 @@ template.innerHTML = `
         text-transform: uppercase;
       }
       .container .title {
+        color: #000000;
         font-weight: 600;
       }
       .container .description {
@@ -43,6 +44,7 @@ template.innerHTML = `
 class OgpMe extends HTMLElement {
   proxy = "";
   src = "";
+  width = "";
 
   constructor() {
     super();
@@ -50,12 +52,14 @@ class OgpMe extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
   connectedCallback() {
-    this.proxy = this.getAttribute("proxy");
-    this.src = this.getAttribute("src");
+    this.proxy = this.getAttribute("proxy") || this.proxy;
+    this.src = this.getAttribute("src") || this.src;
+    this.width = this.getAttribute("width") || this.width;
     this._render();
   }
   async _render() {
-    const txt = await (await fetch(`${this.proxy}/${this.src}`)).text();
+    const url = this.proxy ? `${this.proxy}/${this.src}` : this.src;
+    const txt = await (await fetch(url)).text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(txt, "text/html");
     const image = doc
@@ -70,6 +74,9 @@ class OgpMe extends HTMLElement {
     const description = doc
       .querySelector("meta[property='og:description']")
       .getAttribute("content");
+    this.shadowRoot
+      .querySelector(".card")
+      .setAttribute("style", `width: ${this.width}`);
     this.shadowRoot.querySelector(".img").setAttribute("src", image);
     this.shadowRoot.querySelector(".site").innerHTML = site;
     this.shadowRoot.querySelector(".title").innerHTML = title;
