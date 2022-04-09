@@ -57,31 +57,36 @@ class OgpMe extends HTMLElement {
     this.width = this.getAttribute("width") || this.width;
     this._render();
   }
+  _getContentAttribute(doc, selector) {
+    const element = doc.querySelector(selector);
+    return element === null ? "" : element.getAttribute("content");
+  }
   async _render() {
     const url = this.proxy ? `${this.proxy}/${this.src}` : this.src;
     const txt = await (await fetch(url)).text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(txt, "text/html");
-    const image = doc
-      .querySelector("meta[property='og:image']")
-      .getAttribute("content");
-    const site = doc
-      .querySelector("meta[property='og:site_name']")
-      .getAttribute("content");
-    const title = doc
-      .querySelector("meta[property='og:title']")
-      .getAttribute("content");
-    const description = doc
-      .querySelector("meta[property='og:description']")
-      .getAttribute("content");
+    const image = this._getContentAttribute(doc, "meta[property='og:image']");
+    const site = this._getContentAttribute(
+      doc,
+      "meta[property='og:site_name']"
+    );
+    const title = this._getContentAttribute(doc, "meta[property='og:title']");
+    const description = this._getContentAttribute(
+      doc,
+      "meta[property='og:description']"
+    );
+    if (image === "") {
+      return;
+    }
     this.shadowRoot
       .querySelector(".card")
       .setAttribute("style", `width: ${this.width}`);
+    this.shadowRoot.querySelector(".link").setAttribute("href", this.src);
     this.shadowRoot.querySelector(".img").setAttribute("src", image);
     this.shadowRoot.querySelector(".site").innerHTML = site;
     this.shadowRoot.querySelector(".title").innerHTML = title;
     this.shadowRoot.querySelector(".description").innerHTML = description;
-    this.shadowRoot.querySelector(".link").setAttribute("href", this.src);
   }
 }
 
