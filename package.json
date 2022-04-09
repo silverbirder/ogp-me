@@ -1,6 +1,6 @@
 {
   "name": "@silverbirder/ogp-me",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "<ogp-me> is Web Components for rendering the OGP",
   "main": "./src/index.js",
   "module": "./src/index.js",
