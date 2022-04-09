@@ -1,0 +1,22 @@
+{
+  "name": "@silverbirder/ogp-me",
+  "description": "<ogp-me> is Web Components for rendering the OGP",
+  "main": "./src/index.js",
+  "authors": [
+    "silverbirder <silverbirder@gmail.com> (https://silver-birder.github.io/)"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Web",
+    "Components",
+    "OGP"
+  ],
+  "homepage": "https://github.com/Silver-birder/ogp-me",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
