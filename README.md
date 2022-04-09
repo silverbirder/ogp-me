@@ -1,3 +1,5 @@
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/Silver-birder/ogp-me)
+
 # \<ogp-me>
 
 `<ogp-me>` is a WebComponent that displays Facebook-like information based on Open Graph Protocol (OGP).
