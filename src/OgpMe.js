@@ -1,37 +1,5 @@
 const template = document.createElement("template");
 template.innerHTML = `
-  <style>
-      p {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .card {
-        max-width: 100%;
-      }
-      .container {
-        width: 100%;
-        background-color: #f2f3f5;
-      }
-      .container .img {
-        width: 100%;
-        height: auto;
-      }
-      .container .site {
-        color: #606770;
-        font-size: 12px;
-        text-transform: uppercase;
-      }
-      .container .title {
-        color: #000000;
-        font-weight: 600;
-      }
-      .container .description {
-        color: #606770;
-        font-size: 14px;
-        line-height: 28px;
-      }
-  </style>
   <div class="card">
     <div class="container">
       <a class="link" href="#" target="_blank"><img class="img" /></a>
@@ -41,6 +9,40 @@ template.innerHTML = `
     </div>
   </div>
   `;
+const style = document.createElement("style");
+style.innerHTML = `
+        p {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .card {
+          max-width: 100%;
+        }
+        .container {
+          width: 100%;
+          background-color: #f2f3f5;
+        }
+        .container .img {
+          width: 100%;
+          height: auto;
+        }
+        .container .site {
+          color: #606770;
+          font-size: 12px;
+          text-transform: uppercase;
+        }
+        .container .title {
+          color: #000000;
+          font-weight: 600;
+        }
+        .container .description {
+          color: #606770;
+          font-size: 14px;
+          line-height: 28px;
+        }
+    `;
+
 class OgpMe extends HTMLElement {
   proxy = "";
   src = "";
@@ -77,6 +79,7 @@ class OgpMe extends HTMLElement {
       "meta[property='og:description']"
     );
     if (image === "") {
+      this.remove();
       return;
     }
     this.shadowRoot
@@ -87,6 +90,7 @@ class OgpMe extends HTMLElement {
     this.shadowRoot.querySelector(".site").innerHTML = site;
     this.shadowRoot.querySelector(".title").innerHTML = title;
     this.shadowRoot.querySelector(".description").innerHTML = description;
+    this.shadowRoot.appendChild(style);
   }
 }
 
